@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "esModuleInterop": true,
+    "moduleResolution": "node",
+    "module": "commonjs",
+    "target": "es5",
+    "outDir": "./dist",
+    "sourceMap": true,
+    "lib": ["es2015"],
+    "allowJs": true
+  },
+  "include": [
+    "./src/**/*",
+    "./tests/*.ts"
+  ]
+}
