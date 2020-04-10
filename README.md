@@ -4,6 +4,10 @@ A simple tool for playing back League of Legends replays from the command line.
 
 Works while match history is down!
 
+## Demo
+
+![Run It Back Demo Gif](demo/demo.gif)
+
 ## Installation
 
 ### From Source
