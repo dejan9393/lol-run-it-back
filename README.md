@@ -25,9 +25,8 @@ To run the tool, simply run:
 
 ### Direct Download Links
 
-* [Windows 32 bit](https://github.com/dejan9393/lol-run-it-back/releases/latest/download/lol-run-it-back-win-x86.exe)
-* [Windows 64 bit](https://github.com/dejan9393/lol-run-it-back/releases/latest/download/lol-run-it-back-win-x64.exe)
-* [MacOS X 64 bit](https://github.com/dejan9393/lol-run-it-back/releases/latest/download/lol-run-it-back-macos)
+* [Windows](https://github.com/dejan9393/lol-run-it-back/releases/latest/download/LoLRunItBackSetup.exe)
+* [MacOS X](https://github.com/dejan9393/lol-run-it-back/releases/latest/download/LoLRunItBackSetup.dmg)
 
 ## Watch replays
 The app will ask you for the Game ID of the match that you're trying to retrieve the replay for.

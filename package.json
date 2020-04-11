@@ -6,7 +6,7 @@
     "url": "https://github.com/dejan9393"
   },
   "description": "A simple tool to let you watch LoL replays while match history is down",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "scripts": {
     "dev": "electron-webpack dev",
     "test": "mocha --require ts-node/register test/*.spec.ts",
