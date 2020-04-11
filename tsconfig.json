@@ -1,13 +1,18 @@
 {
   "compilerOptions": {
+    "experimentalDecorators": true,
     "esModuleInterop": true,
     "moduleResolution": "node",
     "module": "commonjs",
-    "target": "es5",
+    "target": "es2015",
     "outDir": "./dist",
     "sourceMap": true,
-    "lib": ["es2015"],
-    "allowJs": true
+    "lib": ["es2015", "dom"],
+    "allowJs": true,
+    "baseUrl": ".",
+    "paths": {
+      "*": ["node_modules/*"]
+    }
   },
   "include": [
     "./src/**/*",

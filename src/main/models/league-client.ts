@@ -3,6 +3,7 @@ import https from "https";
 import LCUConnector from "lcu-connector";
 import {sleep} from "../utility/sleep";
 import cp from "child_process";
+import {EventEmitter} from 'events';
 
 const agent = new https.Agent({
   rejectUnauthorized: false
@@ -12,15 +13,26 @@ const IS_MAC = process.platform === 'darwin';
 
 type RequestMethod = 'GET' | 'POST'
 
-export class Client {
+export class Client extends EventEmitter {
   private url: string;
   private connectPromise;
+  private _status: 'closed' | 'connecting' | 'opening' | 'connected' = 'closed';
 
   constructor() {
+    super();
+
     this.connect();
   }
 
   async connect() {
+    if (this.status === 'closed') {
+      try {
+        await this.openClient();
+      }catch (e) {
+        alert("Could not automatically open your client, please open the LoL Client manually");
+      }
+    }
+
     if (this.connectPromise) {
       return this.connectPromise;
     }
@@ -29,8 +41,11 @@ export class Client {
       const connector = new LCUConnector;
 
       connector.on('connect', data => {
+        this.status = 'connected';
         res(data);
       });
+
+      connector.on('disconnect', () => this.status = 'closed');
 
       connector.start();
     });
@@ -46,7 +61,19 @@ export class Client {
     return this.url = `${credentials.protocol}://${credentials.username}:${credentials.password}@${credentials.address}:${credentials.port}`;
   }
 
+  get status() {
+    return this._status;
+  }
+
+  set status(status) {
+    this._status = status;
+
+    this.emit('status-changed', this.status);
+  }
+
   openClient() {
+    this.status = 'opening';
+
     return new Promise((res, rej) => {
       let cmd;
 
@@ -58,8 +85,10 @@ export class Client {
 
       cp.exec(cmd, (err) => {
         if (err) {
+          this.status = 'closed';
           rej('Error opening client from default path');
         } else {
+          this.status = 'connecting';
           res();
         }
       })
